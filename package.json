@@ -2,7 +2,7 @@
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
   "description": "translate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "assets/img.png",
   "repository": {
     "type": "git",
@@ -18,13 +18,21 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "keybindings":[
+      {
+        "command": "translate.inputTranslation",
+        "key": "ctrl ctrl",
+        "mac": "cmd cmd",
+        "when": "editorTextFocus"
+      }
+    ],
     "commands": [
       {
-        "command": "translate-lpuena.toChinese",
+        "command": "translate.toChinese",
         "title": "翻译-toChinese"
       },
       {
-        "command": "translate-lpuena.toEnglish",
+        "command": "translate.toEnglish",
         "title": "翻译-toEnglish"
       },
       {
@@ -35,11 +43,11 @@
     "menus": {
       "editor/context": [
         {
-          "command": "translate-lpuena.toChinese",
+          "command": "translate.toChinese",
           "when": "editorFocus && editorHasSelection"
         },
         {
-          "command": "translate-lpuena.toEnglish",
+          "command": "translate.toEnglish",
           "when": "editorFocus && editorHasSelection"
         }
       ]

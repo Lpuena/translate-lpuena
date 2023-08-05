@@ -1,20 +1,66 @@
 import * as vscode from 'vscode';
 import { translate } from '@vitalets/google-translate-api';
-
-enum Language {
-  chinese = 'zh',
-  english = 'en',
-}
+import { Language } from './enum';
+// TODO:优化翻译接口，两个交替请求
 export class Translator {
+  // 获取要翻译的内容
+  public async getContent(language: Language, input?: string) {
+    // 获取当前编辑器
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
 
+    // 获取选中的文本范围
+    const selection = editor.selection;
+    let selectedText = editor.document.getText(selection);
 
-  // 翻译函数
-  public static async translate(language: Language, input?: string) {
-    // 实现翻译逻辑
+    // 是否有input
+    if (input) {
+      selectedText = input;
+    }
+
+    if (!selectedText) {
+      vscode.window.showInformationMessage('Please select some text to translate.');
+      return;
+    }
+
+    this.translateLoading(language, selectedText, input);
+  }
+  // 加载 翻译
+  private async translateLoading(language: Language, selectedText: string, input?: string) {
+    // 显示加载提示
+    const progressOptions: vscode.ProgressOptions = {
+      location: vscode.ProgressLocation.Notification,
+      title: 'Translating...',
+      cancellable: true,
+    };
+    await vscode.window.withProgress(progressOptions, async (progress) => {
+      try {
+        // 执行谷歌翻译
+        const translation = await translate(selectedText, { to: language });
+        const translatedText = translation.text;
+        const raw = translation.raw;
+        console.log('原始数据', raw);
+
+        let result: string;
+        if (!input) {
+          result = this.format(translatedText);
+        } else {
+          result = translatedText;
+        }
+
+        this.showTranslationResult(result);
+
+      } catch (error) {
+        console.error('Translation error:', error);
+        vscode.window.showErrorMessage('Translation failed. Please try again later.');
+      }
+    });
   }
 
   // 格式化函数
-  private static format(content: string) {
+  private format(content: string) {
     // 实现格式化逻辑 
     // 格式数据，替换空格为下划线
     let text = content.replace(/ /g, '_');
@@ -33,17 +79,34 @@ export class Translator {
     });
     // 拼接返回 （小驼峰）
     const result = formattedWords.join('');
-
     console.log(result);
     return result;
   }
 
   // input输入翻译函数
-  public static async inputTranslation() {
+  public async inputTranslation() {
     // 检测语言
+    const input = await vscode.window.showInputBox({
+			placeHolder: 'Enter Chinese or English to translate'
+		});
+		if (!input) {
+			return;
+		}
+
+		// 检测输入是否包含中文
+		const hasChinese = /[\u4e00-\u9fa5]/.test(input);
+		if (hasChinese) {
+			// 包含中文,翻译到英文
+			this.getContent(Language.english, input);
+			console.log('翻译成英文');
+		} else {
+			// 不包含中文,翻译到中文
+			this.getContent(Language.chinese, input);
+			console.log('翻译成中文');
+		}
   }
   // 展示结果
-  public static async showTranslationResult(result:string){
+  private async showTranslationResult(result: string) {
     const message = `Translated: ${result}`;
     vscode.window.showInformationMessage(message, '复制').then(selection => {
       console.log('selection', selection);

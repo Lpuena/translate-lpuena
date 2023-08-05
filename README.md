@@ -1,10 +1,16 @@
-# translate-lpuena README
+# translate-Lpuena README
 
+## Features
 
-## Introduction
-
-1. Translate Chinese to English based on Google Translate. 
-2. After the translation is successful, it is copied to the clipboard.
+1. Translate Chinese to English based on Google Translate.
+2. After the translation is successful, you can optionally copy it to the clipboard.
 
 ## Usage
-Applicable for programmers when naming fields in development.
+
+1. Open the command line (翻译-input) to enter the translation mode.
+2. You can use the shortcut double-click ctrl to enter the translation mode.
+3. After the translation is successful, you can optionally copy it to the clipboard.
+
+## Extension Settings
+
+No settings are required.
