@@ -14,14 +14,22 @@
   "contributes": {
     "commands": [
       {
-        "command": "translate-lpuena.showTranslate",
-        "title": "翻译"
+        "command": "translate-lpuena.toChinese",
+        "title": "翻译-toChinese"
+      },
+      {
+        "command": "translate-lpuena.toEnglish",
+        "title": "翻译-toEnglish"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "translate-lpuena.showTranslate",
+          "command": "translate-lpuena.toChinese",
+          "when": "editorFocus && editorHasSelection"
+        },
+        {
+          "command": "translate-lpuena.toEnglish",
           "when": "editorFocus && editorHasSelection"
         }
       ]
