@@ -1,8 +1,12 @@
 import * as vscode from 'vscode';
 import { translate } from '@vitalets/google-translate-api';
 import { Language } from './enum';
+import { Api } from './Api';
+
 // TODO:优化翻译接口，两个交替请求
 export class Translator {
+  private apiName = 'google';
+  private googleError = 'error';
   // 获取要翻译的内容
   public async getContent(language: Language, input?: string) {
     // 获取当前编辑器
@@ -38,25 +42,59 @@ export class Translator {
     await vscode.window.withProgress(progressOptions, async (progress) => {
       try {
         // 执行谷歌翻译
-        const translation = await translate(selectedText, { to: language });
-        const translatedText = translation.text;
-        const raw = translation.raw;
-        console.log('原始数据', raw);
+        // const translatedText = await this.googleApi(selectedText, language);
+        const api = new Api();
+        console.log('name', this.apiName);
 
-        let result: string;
-        if (!input) {
-          result = this.format(translatedText);
+        let translatedText: string;
+
+        if (this.apiName === 'google') {
+          this.apiName = 'baidu';
+          translatedText = await this.googleApi(selectedText, language);
+          // 报错的话下面的语句就不执行了
+          this.googleError = 'normal';
         } else {
-          result = translatedText;
+          translatedText = await api.baiduApi(selectedText, language);
+          if (this.googleError === 'normal') {
+            this.apiName = 'google';
+          }
+
         }
+
+
+
+        const result = this.isFormat(translatedText, input);
 
         this.showTranslationResult(result);
 
-      } catch (error) {
+      } catch (error: any) {
         console.error('Translation error:', error);
-        vscode.window.showErrorMessage('Translation failed. Please try again later.');
+        if (error.name === 'TooManyRequestsError') {
+          vscode.window.showErrorMessage(error.message);
+        } else {
+          vscode.window.showErrorMessage('Translation failed. Please try again later.');
+        }
       }
     });
+  }
+  private isFormat(translatedText: string, input?: string) {
+    let result: string;
+    if (!input) {
+      // 选中就格式化小驼峰
+      result = this.format(translatedText);
+    } else {
+      result = translatedText;
+    }
+    return result;
+  }
+  // 谷歌翻译
+  private async googleApi(selectedText: string, language: string) {
+    const translation = await translate(selectedText, { to: language });
+    const translatedText = translation.text;
+    const raw = translation.raw;
+    console.log('原始数据', raw);
+
+    return translatedText;
   }
 
   // 格式化函数
@@ -87,23 +125,23 @@ export class Translator {
   public async inputTranslation() {
     // 检测语言
     const input = await vscode.window.showInputBox({
-			placeHolder: 'Enter Chinese or English to translate'
-		});
-		if (!input) {
-			return;
-		}
+      placeHolder: 'Enter Chinese or English to translate'
+    });
+    if (!input) {
+      return;
+    }
 
-		// 检测输入是否包含中文
-		const hasChinese = /[\u4e00-\u9fa5]/.test(input);
-		if (hasChinese) {
-			// 包含中文,翻译到英文
-			this.getContent(Language.english, input);
-			console.log('翻译成英文');
-		} else {
-			// 不包含中文,翻译到中文
-			this.getContent(Language.chinese, input);
-			console.log('翻译成中文');
-		}
+    // 检测输入是否包含中文
+    const hasChinese = /[\u4e00-\u9fa5]/.test(input);
+    if (hasChinese) {
+      // 包含中文,翻译到英文
+      this.getContent(Language.english, input);
+      console.log('翻译成英文');
+    } else {
+      // 不包含中文,翻译到中文
+      this.getContent(Language.chinese, input);
+      console.log('翻译成中文');
+    }
   }
   // 展示结果
   private async showTranslationResult(result: string) {

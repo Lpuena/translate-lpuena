@@ -1,9 +1,12 @@
 import * as vscode from 'vscode';
 import { Translator } from './Translator';
 import { Language } from './enum';
+import { baiDuApi } from './baidu';
 
 export function activate(context: vscode.ExtensionContext) {
 	const translator = new Translator();
+	console.log(1);
+	
 
 	let disposable = vscode.commands.registerCommand('translate.toChinese', () => {
 		translator.getContent(Language.chinese);
@@ -16,6 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let inputContent = vscode.commands.registerCommand('translate.inputTranslation', () => {
 		translator.inputTranslation();
+		// baiDuApi('你好吖，你吃饭了吗', Language.english);
 	});
 
 
