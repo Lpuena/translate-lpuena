@@ -26,6 +26,10 @@
       {
         "command": "translate-lpuena.toEnglish",
         "title": "翻译-toEnglish"
+      },
+      {
+        "command": "translate.inputTranslation",
+        "title": "翻译-input"
       }
     ],
     "menus": {
