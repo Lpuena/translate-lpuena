@@ -1,9 +1,8 @@
-# Change Log
+# translate-Lpuena Change Log
 
-All notable changes to the "translate-lpuena" extension will be documented in this file.
+## v0.0.2 - 2023-08-05
+- Add support for Chinese to English
+- Add support for clipboard  ✔
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+## v0.0.1 - 2023-08-03
+- Initial release(English to Chinese)
