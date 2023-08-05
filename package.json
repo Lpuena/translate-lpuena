@@ -2,7 +2,13 @@
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
   "description": "translate",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "icon": "assets/img.png",
+  "repository": {
+    "type": "git",
+    "url":"https://github.com/Lpuena/translate-lpuena"
+  },
+  "publisher": "Lpuena",
   "engines": {
     "vscode": "^1.80.0"
   },
