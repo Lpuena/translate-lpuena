@@ -1,4 +1,11 @@
 /*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+/*!
  * depd
  * Copyright(c) 2014-2018 Douglas Christopher Wilson
  * MIT Licensed
@@ -8,6 +15,20 @@
  * http-errors
  * Copyright(c) 2014 Jonathan Ong
  * Copyright(c) 2016 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+/*!
+ * mime-db
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015-2022 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+/*!
+ * mime-types
+ * Copyright(c) 2014 Jonathan Ong
+ * Copyright(c) 2015 Douglas Christopher Wilson
  * MIT Licensed
  */
 
