@@ -8,10 +8,18 @@ interface BaiDu {
   trans_result: Array<Dst>
   error_code?: string
 }
+
+const config = vscode.workspace.getConfiguration('translate-lpuena');
+const appid = config.get('appid');
+const secret = config.get('secret');
+console.log(config);
+
+
+
+
 // 请求百度接口
 export const baiDuApi = async (q: string, to: string) => {
-  const appid = "20230805001770830";
-  const secret = "GCz5V7I3e49DS47wZyzB";
+
   const salt = Math.random();
   const { data }: { data: BaiDu } = await axios({
     method: "get",

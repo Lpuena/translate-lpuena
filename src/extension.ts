@@ -3,11 +3,9 @@ import { Translator } from './Translator';
 import { Language } from './enum';
 import { baiDuApi } from './baidu';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {	
 	const translator = new Translator();
-	console.log(1);
 	
-
 	let disposable = vscode.commands.registerCommand('translate.toChinese', () => {
 		translator.getContent(Language.chinese);
 

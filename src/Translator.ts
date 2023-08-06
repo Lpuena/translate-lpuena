@@ -131,17 +131,37 @@ export class Translator {
       return;
     }
 
-    // 检测输入是否包含中文
-    const hasChinese = /[\u4e00-\u9fa5]/.test(input);
-    if (hasChinese) {
-      // 包含中文,翻译到英文
+    let chCount = 0;
+    let enCount = 0;
+    for (let char of input) {
+      if (/[\u4e00-\u9fa5]/.test(char)) {
+        chCount++; 
+      } else if (/[a-zA-Z]/.test(char)) {
+        enCount++;
+      }
+    }
+    console.log(chCount,enCount);
+    
+    if (chCount > enCount) {
       this.getContent(Language.english, input);
       console.log('翻译成英文');
     } else {
-      // 不包含中文,翻译到中文
-      this.getContent(Language.chinese, input);
-      console.log('翻译成中文');
+       // 翻译到中文
+       this.getContent(Language.chinese, input);
+       console.log('翻译成中文');
     }
+
+    // // 检测输入是否包含中文
+    // const hasChinese = /[\u4e00-\u9fa5]/.test(input);
+    // if (hasChinese) {
+    //   // 包含中文,翻译到英文
+    //   this.getContent(Language.english, input);
+    //   console.log('翻译成英文');
+    // } else {
+    //   // 不包含中文,翻译到中文
+    //   this.getContent(Language.chinese, input);
+    //   console.log('翻译成中文');
+    // }
   }
   // 展示结果
   private async showTranslationResult(result: string) {

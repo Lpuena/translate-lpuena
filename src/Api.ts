@@ -17,3 +17,4 @@ export class Api {
     return baiDuApi(selectedText, language);
   }
 }
+

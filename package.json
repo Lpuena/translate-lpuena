@@ -1,9 +1,9 @@
 {
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
-  "description": "translate",
-  "version": "0.0.3",
-  "icon": "assets/img.png",
+  "description": "translate for vscode",
+  "version": "0.0.4",
+  "icon": "assets/double.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Lpuena/translate-lpuena"
@@ -18,6 +18,22 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "translate-lpuena",
+      "description": "Configuration for Baidu API",
+      "properties": {
+        "translate-lpuena.appid": {
+          "type": "string",
+          "default": "20200921000570318",
+          "description": "百度翻译API-appid"
+        },
+        "translate-lpuena.secret": {
+          "type": "string",
+          "default": "GLMeRH02ZIQHOCIPlJhW",
+          "description": "百度翻译API-secret"
+        }
+      }
+    },
     "keybindings": [
       {
         "command": "translate.inputTranslation",
