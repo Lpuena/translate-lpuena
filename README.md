@@ -2,7 +2,7 @@
 
 ## Features
 
-1. Translate Chinese to English based on Google Translate.
+1. Translate Chinese into English based on Google Translate and Baidu Translate.
 2. After the translation is successful, you can optionally copy it to the clipboard.
 
 ## Usage
