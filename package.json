@@ -22,12 +22,12 @@
       "title": "translate-lpuena",
       "description": "Configuration for Baidu API",
       "properties": {
-        "translate.appid": {
+        "translate-lpuena.appid": {
           "type": "string",
           "default": "20200921000570318",
           "description": "百度翻译API-appid"
         },
-        "translate.secret": {
+        "translate-lpuena.secret": {
           "type": "string",
           "default": "GLMeRH02ZIQHOCIPlJhW",
           "description": "百度翻译API-secret"
