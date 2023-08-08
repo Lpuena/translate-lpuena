@@ -1,5 +1,8 @@
 # translate-Lpuena Change Log
 
+## v0.1.0 - 2023-08-08
+- Brand new logo icon
+
 ## v0.0.4 - 2023-08-06
 - Added Baidu translation Api
 - Add custom Baidu translation appid
