@@ -2,8 +2,8 @@
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
   "description": "translate for vscode",
-  "version": "0.0.4",
-  "icon": "assets/double.png",
+  "version": "0.1.0",
+  "icon": "assets/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Lpuena/translate-lpuena"
@@ -22,12 +22,12 @@
       "title": "translate-lpuena",
       "description": "Configuration for Baidu API",
       "properties": {
-        "translate-lpuena.appid": {
+        "translate.appid": {
           "type": "string",
           "default": "20200921000570318",
           "description": "百度翻译API-appid"
         },
-        "translate-lpuena.secret": {
+        "translate.secret": {
           "type": "string",
           "default": "GLMeRH02ZIQHOCIPlJhW",
           "description": "百度翻译API-secret"
