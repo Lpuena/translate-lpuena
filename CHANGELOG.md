@@ -1,5 +1,8 @@
 # translate-Lpuena Change Log
 
+## v0.1.1 - 2023-08-08
+- Fix settings
+
 ## v0.1.0 - 2023-08-08
 - Brand new logo icon
 

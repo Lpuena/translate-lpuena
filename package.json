@@ -2,7 +2,7 @@
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
   "description": "translate for vscode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "assets/logo.png",
   "repository": {
     "type": "git",
