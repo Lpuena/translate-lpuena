@@ -1,4 +1,6 @@
 # translate-Lpuena Change Log
+## v0.1.3 - 2023-08-13
+- Fix the condition that must be triggered in the page
 
 ## v0.1.2 - 2023-08-13
 - Cancel the condition that must be triggered in the page
