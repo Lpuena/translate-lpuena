@@ -2,7 +2,7 @@
   "name": "translate-lpuena",
   "displayName": "translate-Lpuena",
   "description": "translate for vscode",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "icon": "assets/logo.png",
   "repository": {
     "type": "git",
@@ -38,8 +38,7 @@
       {
         "command": "translate.inputTranslation",
         "key": "ctrl ctrl",
-        "mac": "cmd cmd",
-        "when": "editorTextFocus"
+        "mac": "cmd cmd"
       }
     ],
     "commands": [
