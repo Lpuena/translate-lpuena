@@ -38,7 +38,7 @@
       {
         "command": "translate.inputTranslation",
         "key": "ctrl ctrl",
-        "mac": "cmd cmd",
+        "mac": "cmd+shift+T",
         "when": "editorFocus"
       }
     ],
